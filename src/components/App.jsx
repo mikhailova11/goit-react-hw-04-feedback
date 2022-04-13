@@ -1,61 +1,60 @@
-import React from "react";
+import {useState} from "react";
 import Statistics from "./Statistics";
 import Section from "./Section";
 import FeedbackOptions from "./FeedbackOptions";
 import Notification from './Notification';
-import PropTypes from "prop-types";
 
+export default function App() {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
-class App extends React.Component {
-  state = {
-      good: 0,
-      neutral: 0,
-      bad: 0
+  const onLeaveFeedback =(button)=>{
+
+    switch (button) {
+      case 'good':
+        setGood(good + 1)
+        break;
+
+      case 'neutral':
+        setNeutral(neutral + 1)
+        break;
+      
+      case 'bad':
+        setBad(bad + 1)
+        break;
+    
+      default:
+        return;
     }
-
-  static propTypes = {
-      good: PropTypes.number,
-      neutral: PropTypes.number,
-      bad: PropTypes.number,
-  };
-
-  onLeaveFeedback =(button)=>{
-    return this.setState({[button] : this.state[button] + 1})
   }
   
-  countTotalFeedback = () => {
-      const { good, neutral, bad} = this.state;
+  const countTotalFeedback = () => {
       return  good + neutral + bad
   } 
 
-  countPositiveFeedbackPercentage= () => {
-      const {good} = this.state;
-
+  const countPositiveFeedbackPercentage= () => {
       if(!good){
           return 0;
       }
-      return ((good*100)/this.countTotalFeedback()).toFixed(0)
+      return ((good*100)/countTotalFeedback()).toFixed(0)
   }
 
 
-render() {
-    const {good, neutral, bad} = this.state
-    
-    
   return (
       <div className='container'>
           <Section title="Please leave feedback"/>
           <FeedbackOptions 
           options={['good', 'neutral', 'bad']}
-          onLeaveFeedback={this.onLeaveFeedback}
+          onLeaveFeedback={onLeaveFeedback}
           />
 
 
           <Section title="Statics"/>
           {good || neutral || bad 
           ?<Statistics 
-              positivePercentage={this.countPositiveFeedbackPercentage} 
-              total={this.countTotalFeedback} 
+              positivePercentage={countPositiveFeedbackPercentage} 
+              total={countTotalFeedback} 
               good={good} 
               neutral={neutral} 
               bad={bad} />
@@ -67,6 +66,3 @@ render() {
 
   );
 }
-}
-
-export default App;
