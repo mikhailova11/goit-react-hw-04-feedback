@@ -1,0 +1,14 @@
+.text {
+  font-family: Roboto;
+  font-size: 20px;
+  line-height: 18px;
+  letter-spacing: 0.03em;
+  color: #747272;
+}
+.text:not(:last-child) {
+  margin-bottom: 8px;
+}
+.listText {
+  display: flex;
+  flex-direction: column;
+}

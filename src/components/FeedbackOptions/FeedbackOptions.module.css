@@ -1,0 +1,29 @@
+.button {
+  display: block;
+  font-family: Roboto;
+  font-size: 15px;
+  line-height: 13px;
+  letter-spacing: 0.03em;
+  margin-top: 10px;
+  width: 100px;
+  height: auto;
+  padding: 5px;
+  color: #525151;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(177, 226, 43, 0.144);
+  outline: 2px solid rgba(177, 226, 43, 0.459);
+  cursor: pointer;
+}
+.button:hover {
+  background-color: rgba(177, 226, 43, 0.281);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+.button:not(:last-child) {
+  margin-right: 10px;
+}
+.listBtn {
+  display: flex;
+}
